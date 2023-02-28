@@ -1,7 +1,7 @@
 # upperBank
 
 
-<details>
+<details style="background: 'blue'">
 <summary>teste</summary>
 
-</details<
+</details>
