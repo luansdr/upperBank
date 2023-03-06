@@ -13,14 +13,14 @@
 
 - > <h2>Movimentações</h2>
   - [Cadastrar](#cadastrar-uma-movimentaçao)
-  - [Listar todas](#listar-todos-movimentaçao)
-  - [Mostrar detalhes](#mostrar-detalhes-movimentaçao)
+  - [Listar todas](#listar-todas-movimentações-de-uma-conta)
+  - [Mostrar detalhes](#mostrar-detalhes-de-uma-movimentação)
   - [Atualizar](#atualização-movimentaçao)
   - [Apagar](#apagar-movimentaçao)
 
 <h1>Swagger upperbank</h1>
 
-<details open>
+<details>
 <summary>Conta</summary>
 
 <br>
@@ -83,7 +83,7 @@
 <br/>
 </details>
 
-<details open>
+<details>
 <summary> <b style="color:cyan">GET</b> /upperbank/api/conta</summary>
 
 <br/>
@@ -530,7 +530,7 @@
 
 <br/>
 
-# Atualização movimentação
+# Atualização movimentaçao
 
 ### Requisição:
 
