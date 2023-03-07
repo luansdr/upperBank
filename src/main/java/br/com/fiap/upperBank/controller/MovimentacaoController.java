@@ -1,10 +1,8 @@
 package br.com.fiap.upperBank.controller;
 import java.util.Calendar;
-import java.util.TimeZone;
 
 import org.springframework.web.bind.annotation.*;
 
-import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Movimentacao;;
 
 @RestController
