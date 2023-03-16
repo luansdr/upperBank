@@ -47,12 +47,12 @@
 
 ```json
 {
-    "id": 0,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
-        {
+        {    
+            "id": 0,
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -90,12 +90,13 @@
 
 ```json
 {
-    "id": 0,
+    "id": 1,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
-        {
+        {   
+            "id": 1,
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -103,7 +104,7 @@
     ],
     "movimentacao": [
         {
-            "id": 0,
+            "id": 1,
             "nome": "Pagamento de conta",
             "tipo": 65,
             "agenciaDestino": 1231,
@@ -157,12 +158,13 @@
 ```json
 [
   {
-    "id": 0,
+    "id": 1,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
-        {
+        {    
+            "id": 1,
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -170,7 +172,7 @@
     ],
     "movimentacao": [
         {
-            "id": 0,
+            "id": 1,
             "nome": "Pagamento de conta",
             "tipo": 65,
             "agenciaDestino": 1231,
@@ -234,12 +236,13 @@
 
 ```json
 {
-    "id": 0,
+    "id": 1,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
-        {
+        {   
+            "id": 1,
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -247,7 +250,7 @@
     ],
     "movimentacao": [
         {
-            "id": 0,
+            "id": 1,
             "nome": "Pagamento de conta",
             "tipo": 65,
             "agenciaDestino": 1231,
@@ -306,12 +309,13 @@
 
 ```json
 {
-    "id": 0,
+    "id": 1,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
         {
+            "id": 1, 
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -319,7 +323,7 @@
     ],
     "movimentacao": [
         {
-            "id": 0,
+            "id": 1,
             "nome": "Pagamento de conta",
             "tipo": 65,
             "agenciaDestino": 1231,
@@ -351,12 +355,13 @@
 
 ```json
 {
-    "id": 0,
+    "id": 1,
     "agencia": 1234,
     "conta": 44444,
     "digito": 1,
     "cliente": [
-        {
+        { 
+            "id": 1, 
             "nome": "Luan Reis",
             "dataNascimento": "16/02/2023 - 14:00:00",
             "cpf": "40587128801"
@@ -364,7 +369,7 @@
     ],
     "movimentacao": [
         {
-            "id": 0,
+            "id": 1,
             "nome": "Pagamento de conta",
             "tipo": 65,
             "agenciaDestino": 1231,
@@ -789,7 +794,7 @@
 ### Requisição:
 
 ```json
-{
+{ 
     "cpf": "40587128801",
     "nome": "Luan Reis",
     "dataNascimento": "19/11/1995",
@@ -805,7 +810,8 @@
 #### Tipo do body: <b>Application/json</b>
 
 ```json
-{
+{    
+    "id": 1,
     "cpf": "40587128801",
     "nome": "Luan Reis",
     "dataNascimento": "19/11/1995",
@@ -846,11 +852,13 @@
 ```json
 [
   {
+    "id": 1,
     "cpf": "40587128801",
     "nome": "Luan Reis",
     "dataNascimento": "19/11/1955",
   },
   {
+    "id": 2,
     "cpf": "222312332132",
     "nome": "Ana Paula",
     "dataNascimento": "20/10/2000",
@@ -886,7 +894,7 @@
 </details>
 
 <details>
-<summary> <b style="color:cyan">GET</b> /upperbank/api/cliente/${id_cpf}</summary>
+<summary> <b style="color:cyan">GET</b> /upperbank/api/cliente/${id}</summary>
 
 <br/>
 
@@ -901,7 +909,8 @@
 #### Tipo do body: <b>Application/json</b>
 
 ```json
-{
+{ 
+    "id": 1,
     "cpf": "40587128801",
     "nome": "Luan Reis",
     "dataNascimento": "19/11/1955",
@@ -946,7 +955,8 @@
 ### Requisição:
 
 ```json
-{
+{ 
+    "id": 1,
     "cpf": "40587128801",
     "nome": "Luan Reis",
     "dataNascimento": "19/11/1955",
@@ -965,6 +975,7 @@
 
 ```json
 {
+  "id": 1,
   "cpf": "40587128801",
   "nome": "Luan Reis",
   "dataNascimento": "19/11/1955",
@@ -987,7 +998,7 @@
 </details>
 
 <details>
-<summary> <b style="color:red">DELETE</b> /upperbank/api/cliente/${id_cpf}</summary>
+<summary> <b style="color:red">DELETE</b> /upperbank/api/cliente/${id}</summary>
 
 <br/>
 
@@ -1026,11 +1037,12 @@
 
 # Tabela banco de dados
 
-|      campo       |     tipo     | obrigatório | descrição                                                  |
-| :--------------: | :----------: | :---------: | ---------------------------------------------------------- |
-|    id_cpf        | varchar(11)  |     sim     | Id será o CPF e será unica                                 |
-|   nm_cliente     | varchar(100) |     sim     | nome do cliente                                            |
-| dt_nascimento    |     date     |     sim     | data nascimento do cliente                                 |
+|     campo     |     tipo     | obrigatório | descrição                                                            |
+| :-----------: | :----------: | :---------: | -------------------------------------------------------------------- |
+|      id       |     int      |     sim     | id e primary key.                                                    |
+|      cpf      | varchar(11)  |     sim     | CPF será unico para cada cliente, não poderá haver 2 cpf cadastrado. |
+|  nm_cliente   | varchar(100) |     sim     | nome do cliente                                                      |
+| dt_nascimento |     date     |     sim     | data nascimento do cliente                                           |
 
 
 </details>

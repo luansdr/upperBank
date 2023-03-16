@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Conta {
 
-    private int id;
+    private Long id;
 
     private int agencia;
 
@@ -16,7 +16,7 @@ public class Conta {
     private List<Cliente> cliente;
 
     private List<Movimentacao> movimentacao;
-    
+
     private Calendar dataAbertura;
 
     private int senha;
@@ -26,9 +26,6 @@ public class Conta {
     private double saldo;
 
     private double limite;
-
-
-    
 
     public Conta(int agencia, int conta, int digito, List<Cliente> cliente, List<Movimentacao> movimentacao,
             Calendar dataAbertura, int senha, char status, double saldo, double limite) {
@@ -44,11 +41,11 @@ public class Conta {
         this.limite = limite;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -67,8 +64,6 @@ public class Conta {
     public void setConta(int conta) {
         this.conta = conta;
     }
-
-    
 
     public int getDigito() {
         return digito;
@@ -101,7 +96,6 @@ public class Conta {
     public void setDataAbertura(Calendar dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
-
 
     public char getStatus() {
         return status;
@@ -141,9 +135,5 @@ public class Conta {
                 + cliente + ", movimentacao=" + movimentacao + ", dataAbertura=" + dataAbertura + ", senha=" + senha
                 + ", status=" + status + ", saldo=" + saldo + ", limite=" + limite + "]";
     }
-
-
-    
-
 
 }

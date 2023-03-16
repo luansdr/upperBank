@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class Movimentacao {
 
-    private int id;
+    private Long id;
 
     private String nome;
 
@@ -38,6 +38,16 @@ public class Movimentacao {
         this.descricao = descricao;
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getNome() {
         return nome;
@@ -116,14 +126,6 @@ public class Movimentacao {
         return "Movimentacao [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", agenciaDestino=" + agenciaDestino
                 + ", contaDestino=" + contaDestino + ", digitoContaDestino=" + digitoContaDestino + ", data=" + data
                 + ", status=" + status + ", valor=" + valor + ", descricao=" + descricao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 

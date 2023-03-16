@@ -4,30 +4,26 @@ import java.util.Calendar;
 
 public class Cliente {
 
-    private String id_cpf;
+    private Long id;
+
+    private String cpf;
 
     private String nome;
 
     private Calendar dataNascimento;
 
-
-    public Cliente(String id_cpf, String nome, Calendar dataNascimento) {
-        this.id_cpf = id_cpf;
+    public Cliente(String cpf, String nome, Calendar dataNascimento) {
+        this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente [cpf=" + id_cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
-    }
-
     public String getCpf() {
-        return id_cpf;
+        return cpf;
     }
 
-    public void setCpf(String id_cpf) {
-        this.id_cpf = id_cpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -44,6 +40,19 @@ public class Cliente {
 
     public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
     }
 
 
