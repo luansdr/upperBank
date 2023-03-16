@@ -1,0 +1,1110 @@
+openapi: 3.0.0
+info:
+  title: UpperBank - contas
+  version: 1.0.0
+servers:
+  - url: localhost:8080
+paths:
+  /api/conta:
+    get:
+      tags:
+        - Conta
+      summary: allContas
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:09:40 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 1
+                  agencia: 1234
+                  conta: 44114
+                  digito: 1
+                  cliente:
+                    - id: 1
+                      cpf: '40587128801'
+                      nome: Luan Reis
+                      dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                  movimentacao:
+                    - id: 1
+                      nome: Pagamento de conta
+                      tipo: 65
+                      agenciaDestino: 1231
+                      contaDestino: 12343
+                      digitoContaDestino: 1
+                      data: '2023-03-14T00:32:21.977+00:00'
+                      status: A
+                      valor: 0
+                      descricao: Pagamento
+                  dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                  senha: 12345678
+                  status: A
+                  saldo: 0
+                  limite: 0
+                - id: 2
+                  agencia: 1234
+                  conta: 44114
+                  digito: 1
+                  cliente:
+                    - id: 1
+                      cpf: '40587128801'
+                      nome: Luan Reis
+                      dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                  movimentacao:
+                    - id: 1
+                      nome: Pagamento de conta
+                      tipo: 65
+                      agenciaDestino: 1231
+                      contaDestino: 12343
+                      digitoContaDestino: 1
+                      data: '2023-03-14T00:32:21.977+00:00'
+                      status: A
+                      valor: 0
+                      descricao: Pagamento
+                  dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                  senha: 12345678
+                  status: A
+                  saldo: 0
+                  limite: 0
+                - id: 3
+                  agencia: 1234
+                  conta: 44114
+                  digito: 1
+                  cliente:
+                    - id: 1
+                      cpf: '40587128801'
+                      nome: Luan Reis
+                      dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                  movimentacao:
+                    - id: 1
+                      nome: Pagamento de conta
+                      tipo: 65
+                      agenciaDestino: 1231
+                      contaDestino: 12343
+                      digitoContaDestino: 1
+                      data: '2023-03-14T00:32:21.977+00:00'
+                      status: A
+                      valor: 0
+                      descricao: Pagamento
+                  dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                  senha: 12345678
+                  status: A
+                  saldo: 0
+                  limite: 0
+        '204':
+          description: No Content
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:12:05 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    put:
+      tags:
+        - Conta
+      summary: updateConta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                agencia: 1111
+                conta: 44114
+                digito: 1
+                cliente:
+                  - id: 1
+                    nome: Luan Reis
+                    dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                    cpf: '40587128801'
+                movimentacao:
+                  - id: 0
+                    nome: Pagamento de conta
+                    tipo: 65
+                    agenciaDestino: 1231
+                    contaDestino: 12343
+                    digitoContaDestino: 1
+                    data: '2023-03-14T00:32:21.977+00:00'
+                    status: A
+                    valor: 0
+                    descricao: Pagamento
+                dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                senha: 12345678
+                status: A
+                saldo: 0
+                limite: 0
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:09:11 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                agencia: 1111
+                conta: 44114
+                digito: 1
+                cliente:
+                  - id: 1
+                    cpf: '40587128801'
+                    nome: Luan Reis
+                    dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                movimentacao:
+                  - id: 0
+                    nome: Pagamento de conta
+                    tipo: 65
+                    agenciaDestino: 1231
+                    contaDestino: 12343
+                    digitoContaDestino: 1
+                    data: '2023-03-14T00:32:21.977+00:00'
+                    status: A
+                    valor: 0
+                    descricao: Pagamento
+                dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                senha: 12345678
+                status: A
+                saldo: 0
+                limite: 0
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:12:23 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    post:
+      tags:
+        - Conta
+      summary: createConta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                agencia: 1234
+                conta: 44114
+                digito: 1
+                cliente:
+                  - id: 1
+                    nome: Luan Reis
+                    dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                    cpf: '40587128801'
+                movimentacao:
+                  - id: 1
+                    nome: Pagamento de conta
+                    tipo: 65
+                    agenciaDestino: 1231
+                    contaDestino: 12343
+                    digitoContaDestino: 1
+                    data: '2023-03-14T00:32:21.977+00:00'
+                    status: A
+                    valor: 0
+                    descricao: Pagamento
+                dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                senha: 12345678
+                status: A
+                saldo: 0
+                limite: 0
+      responses:
+        '201':
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:08:56 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                agencia: 1234
+                conta: 44114
+                digito: 1
+                cliente:
+                  - id: 1
+                    cpf: '40587128801'
+                    nome: Luan Reis
+                    dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                movimentacao:
+                  - id: 1
+                    nome: Pagamento de conta
+                    tipo: 65
+                    agenciaDestino: 1231
+                    contaDestino: 12343
+                    digitoContaDestino: 1
+                    data: '2023-03-14T00:32:21.977+00:00'
+                    status: A
+                    valor: 0
+                    descricao: Pagamento
+                dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                senha: 12345678
+                status: A
+                saldo: 0
+                limite: 0
+  /api/conta/1:
+    delete:
+      tags:
+        - Conta
+      summary: deleteConta
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:09:18 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:12:12 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    get:
+      tags:
+        - Conta
+      summary: detailConta
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:09:05 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                agencia: 1234
+                conta: 44114
+                digito: 1
+                cliente:
+                  - id: 1
+                    cpf: '40587128801'
+                    nome: Luan Reis
+                    dataNascimento: '2023-03-14T00:32:21.974+00:00'
+                movimentacao:
+                  - id: 1
+                    nome: Pagamento de conta
+                    tipo: 65
+                    agenciaDestino: 1231
+                    contaDestino: 12343
+                    digitoContaDestino: 1
+                    data: '2023-03-14T00:32:21.977+00:00'
+                    status: A
+                    valor: 0
+                    descricao: Pagamento
+                dataAbertura: '2023-03-14T00:32:21.978+00:00'
+                senha: 12345678
+                status: A
+                saldo: 0
+                limite: 0
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:12:30 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /api/cliente:
+    get:
+      tags:
+        - Cliente
+      summary: allClientes
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                cpf: '44444444444'
+                nome: LUAN SANTOS DOS REIS
+                dataNascimento: '1995-11-19T00:00:00.000+00:00'
+        '204':
+          description: No Content
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:16:16 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    put:
+      tags:
+        - Cliente
+      summary: updateCliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                cpf: '4241412412412'
+                nome: LUAN SANTOS DOsS REIS
+                dataNascimento: '1995-11-19'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                cpf: '4241412412412'
+                nome: LUAN SANTOS DOsS REIS
+                dataNascimento: '1995-11-19T00:00:00.000+00:00'
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:16:47 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    post:
+      tags:
+        - Cliente
+      summary: createCliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                cpf: '44444444444'
+                nome: LUAN SANTOS DOS REIS
+                dataNascimento: '1995-11-19'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:08:03 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                cpf: '44444444444'
+                nome: LUAN SANTOS DOS REIS
+                dataNascimento: '1995-11-19T00:00:00.000+00:00'
+  /api/cliente/1:
+    delete:
+      tags:
+        - Cliente
+      summary: deleteCliente{id}
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:16:33 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    get:
+      tags:
+        - Cliente
+      summary: detailCliente{id}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:07:53 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                cpf: '4241412412412'
+                nome: LUAN SANTOS DOsS REIS
+                dataNascimento: '1995-11-19T00:00:00.000+00:00'
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:17:07 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /api/movimentacao:
+    get:
+      tags:
+        - Movimentações
+      summary: allMovimentacoes
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:10:13 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 2
+                  nome: Pagamento de conta
+                  tipo: 65
+                  agenciaDestino: 1231
+                  contaDestino: 12343
+                  digitoContaDestino: 1
+                  data: '2023-03-14T00:32:21.977+00:00'
+                  status: A
+                  valor: 0
+                  descricao: Pagamento
+                - id: 3
+                  nome: Pagamento de conta
+                  tipo: 65
+                  agenciaDestino: 1231
+                  contaDestino: 12343
+                  digitoContaDestino: 1
+                  data: '2023-03-14T00:32:21.977+00:00'
+                  status: A
+                  valor: 0
+                  descricao: Pagamento
+                - id: 1
+                  nome: Pagamento de csonta
+                  tipo: 65
+                  agenciaDestino: 1231
+                  contaDestino: 12343
+                  digitoContaDestino: 1
+                  data: '2023-03-14T00:32:21.977+00:00'
+                  status: A
+                  valor: 0
+                  descricao: Pagamento
+                - id: 4
+                  nome: Pagamento de conta
+                  tipo: 65
+                  agenciaDestino: 1231
+                  contaDestino: 12343
+                  digitoContaDestino: 1
+                  data: '2023-03-14T00:32:21.977+00:00'
+                  status: A
+                  valor: 0
+                  descricao: Pagamento
+        '204':
+          description: No Content
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:12:46 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    put:
+      tags:
+        - Movimentações
+      summary: updateMovimentacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 4
+                nome: Pagamento de csonta
+                tipo: 65
+                agenciaDestino: 1231
+                contaDestino: 12343
+                digitoContaDestino: 1
+                data: '2023-03-14T00:32:21.977+00:00'
+                status: A
+                valor: 0
+                descricao: Pagamento
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:10:48 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 4
+                nome: Pagamento de csonta
+                tipo: 65
+                agenciaDestino: 1231
+                contaDestino: 12343
+                digitoContaDestino: 1
+                data: '2023-03-14T00:32:21.977+00:00'
+                status: A
+                valor: 0
+                descricao: Pagamento
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:13:10 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    post:
+      tags:
+        - Movimentações
+      summary: createMovimentacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nome: Pagamento de conta
+                tipo: 65
+                agenciaDestino: 1231
+                contaDestino: 12343
+                digitoContaDestino: 1
+                data: '2023-03-14T00:32:21.977+00:00'
+                status: A
+                valor: 0
+                descricao: Pagamento
+      responses:
+        '201':
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:11:34 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                nome: Pagamento de conta
+                tipo: 65
+                agenciaDestino: 1231
+                contaDestino: 12343
+                digitoContaDestino: 1
+                data: '2023-03-14T00:32:21.977+00:00'
+                status: A
+                valor: 0
+                descricao: Pagamento
+  /api/movimentacao/1:
+    delete:
+      tags:
+        - Movimentações
+      summary: deleteMovimentacao
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:10:23 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:13:03 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+    get:
+      tags:
+        - Movimentações
+      summary: detailMovimentacao
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:11:14 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 2
+                nome: Pagamento de conta
+                tipo: 65
+                agenciaDestino: 1231
+                contaDestino: 12343
+                digitoContaDestino: 1
+                data: '2023-03-14T00:32:21.977+00:00'
+                status: A
+                valor: 0
+                descricao: Pagamento
+        '404':
+          description: Not Found
+          headers:
+            Content-Length:
+              schema:
+                type: integer
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Mar 2023 20:11:02 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
