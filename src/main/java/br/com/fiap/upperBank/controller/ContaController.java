@@ -57,16 +57,15 @@ public class ContaController {
   }
 
   // PUT
-  @PutMapping("/api/conta/{id}")
-  public ResponseEntity<Conta> update(@PathVariable Long id, @RequestBody Conta conta) {
+  @PutMapping("/api/conta")
+  public ResponseEntity<Conta> update(@RequestBody Conta conta) {
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(id)).findFirst();
+    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(conta.getId())).findFirst();
 
     if (contasEncontrada.isEmpty()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     contas.remove(contasEncontrada.get());
-    conta.setId(id);
     contas.add(conta);
 
     return ResponseEntity.ok().body(conta);

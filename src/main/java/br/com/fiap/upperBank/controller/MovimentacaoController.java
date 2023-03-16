@@ -52,16 +52,15 @@ public class MovimentacaoController {
     }
 
     // PUT
-    @PutMapping("/api/movimentacao/{id}")
-    public ResponseEntity<Movimentacao> update(@PathVariable Long id, @RequestBody Movimentacao movimentacao) {
+    @PutMapping("/api/movimentacao")
+    public ResponseEntity<Movimentacao> update(@RequestBody Movimentacao movimentacao) {
 
-        var movimentacoesEncontradas = movimentacoes.stream().filter(c -> c.getId().equals(id)).findFirst();
+        var movimentacoesEncontradas = movimentacoes.stream().filter(c -> c.getId().equals(movimentacao.getId())).findFirst();
 
         if (movimentacoesEncontradas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         movimentacoes.remove(movimentacoesEncontradas.get());
-        movimentacao.setId(id);
         movimentacoes.add(movimentacao);
 
         return ResponseEntity.ok().body(movimentacao);

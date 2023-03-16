@@ -31,9 +31,9 @@ public class ClienteController {
 
     // GET DETAILS
     @GetMapping("/api/cliente/{id}")
-    public ResponseEntity<Cliente> show(@PathVariable String cpf) {
+    public ResponseEntity<Cliente> show(@PathVariable Long id) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getCpf().equals(cpf)).findFirst();
+        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(id)).findFirst();
 
         return clientesEncontrada.isEmpty()
                 ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
@@ -45,6 +45,7 @@ public class ClienteController {
     @ResponseBody
     @PostMapping("api/cliente")
     public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
+        cliente.setId(clientes.size() + 1l);
         clientes.add(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
@@ -53,7 +54,7 @@ public class ClienteController {
     @PutMapping("/api/cliente")
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getCpf().equals(cliente.getCpf())).findFirst();
+        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(cliente.getId())).findFirst();
 
         if (clientesEncontrada.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -65,10 +66,10 @@ public class ClienteController {
     }
 
     // DELETE
-    @DeleteMapping("/api/cliente/{cpf}")
-    public ResponseEntity<Cliente> delete(@PathVariable String cpf) {
+    @DeleteMapping("/api/cliente/{id}")
+    public ResponseEntity<Cliente> delete(@PathVariable Long id) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getCpf().equals(cpf)).findFirst();
+        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(id)).findFirst();
 
         if (clientesEncontrada.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
