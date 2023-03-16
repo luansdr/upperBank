@@ -1,0 +1,653 @@
+{
+	"info": {
+		"_postman_id": "f0b9e1c6-7756-4d70-8dca-fef694316ff4",
+		"name": "UpperBank - movimentacoes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23680501"
+	},
+	"item": [
+		{
+			"name": "allMovimentacoes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/movimentacao",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimentacao"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "allMovimentacoes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:10:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 2,\n        \"nome\": \"Pagamento de conta\",\n        \"tipo\": 65,\n        \"agenciaDestino\": 1231,\n        \"contaDestino\": 12343,\n        \"digitoContaDestino\": 1,\n        \"data\": \"2023-03-14T00:32:21.977+00:00\",\n        \"status\": \"A\",\n        \"valor\": 0,\n        \"descricao\": \"Pagamento\"\n    },\n    {\n        \"id\": 3,\n        \"nome\": \"Pagamento de conta\",\n        \"tipo\": 65,\n        \"agenciaDestino\": 1231,\n        \"contaDestino\": 12343,\n        \"digitoContaDestino\": 1,\n        \"data\": \"2023-03-14T00:32:21.977+00:00\",\n        \"status\": \"A\",\n        \"valor\": 0,\n        \"descricao\": \"Pagamento\"\n    },\n    {\n        \"id\": 1,\n        \"nome\": \"Pagamento de csonta\",\n        \"tipo\": 65,\n        \"agenciaDestino\": 1231,\n        \"contaDestino\": 12343,\n        \"digitoContaDestino\": 1,\n        \"data\": \"2023-03-14T00:32:21.977+00:00\",\n        \"status\": \"A\",\n        \"valor\": 0,\n        \"descricao\": \"Pagamento\"\n    },\n    {\n        \"id\": 4,\n        \"nome\": \"Pagamento de conta\",\n        \"tipo\": 65,\n        \"agenciaDestino\": 1231,\n        \"contaDestino\": 12343,\n        \"digitoContaDestino\": 1,\n        \"data\": \"2023-03-14T00:32:21.977+00:00\",\n        \"status\": \"A\",\n        \"valor\": 0,\n        \"descricao\": \"Pagamento\"\n    }\n]"
+				},
+				{
+					"name": "allMovimentacoes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:12:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteMovimentacao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/movimentacao/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimentacao",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deleteMovimentacao",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:10:23 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "deleteMovimentacao",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:13:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "updateMovimentacao",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"nome\": \"Pagamento de csonta\",\r\n    \"tipo\": 65,\r\n    \"agenciaDestino\": 1231,\r\n    \"contaDestino\": 12343,\r\n    \"digitoContaDestino\": 1,\r\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n    \"status\": \"A\",\r\n    \"valor\": 0.0,\r\n    \"descricao\": \"Pagamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/movimentacao",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimentacao"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "updateMovimentacao",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"nome\": \"Pagamento de csonta\",\r\n    \"tipo\": 65,\r\n    \"agenciaDestino\": 1231,\r\n    \"contaDestino\": 12343,\r\n    \"digitoContaDestino\": 1,\r\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n    \"status\": \"A\",\r\n    \"valor\": 0.0,\r\n    \"descricao\": \"Pagamento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:10:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"nome\": \"Pagamento de csonta\",\n    \"tipo\": 65,\n    \"agenciaDestino\": 1231,\n    \"contaDestino\": 12343,\n    \"digitoContaDestino\": 1,\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\n    \"status\": \"A\",\n    \"valor\": 0,\n    \"descricao\": \"Pagamento\"\n}"
+				},
+				{
+					"name": "updateMovimentacao",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"nome\": \"Pagamento de csonta\",\r\n    \"tipo\": 65,\r\n    \"agenciaDestino\": 1231,\r\n    \"contaDestino\": 12343,\r\n    \"digitoContaDestino\": 1,\r\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n    \"status\": \"A\",\r\n    \"valor\": 0.0,\r\n    \"descricao\": \"Pagamento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:13:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "detailMovimentacao",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/movimentacao/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimentacao",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "detailMovimentacao",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:11:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"nome\": \"Pagamento de conta\",\n    \"tipo\": 65,\n    \"agenciaDestino\": 1231,\n    \"contaDestino\": 12343,\n    \"digitoContaDestino\": 1,\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\n    \"status\": \"A\",\n    \"valor\": 0,\n    \"descricao\": \"Pagamento\"\n}"
+				},
+				{
+					"name": "detailMovimentacao",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:11:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "createMovimentacao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/movimentacao",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimentacao"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "createMovimentacao",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movimentacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimentacao"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:11:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"nome\": \"Pagamento de conta\",\n    \"tipo\": 65,\n    \"agenciaDestino\": 1231,\n    \"contaDestino\": 12343,\n    \"digitoContaDestino\": 1,\n    \"data\": \"2023-03-14T00:32:21.977+00:00\",\n    \"status\": \"A\",\n    \"valor\": 0,\n    \"descricao\": \"Pagamento\"\n}"
+				}
+			]
+		}
+	]
+}

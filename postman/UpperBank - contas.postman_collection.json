@@ -1,0 +1,661 @@
+{
+	"info": {
+		"_postman_id": "9489d64d-b7f4-472f-9ba2-9ee17a733189",
+		"name": "UpperBank - contas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23680501"
+	},
+	"item": [
+		{
+			"name": "allContas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"conta"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "allContas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:09:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"agencia\": 1234,\n        \"conta\": 44114,\n        \"digito\": 1,\n        \"cliente\": [\n            {\n                \"id\": 1,\n                \"cpf\": \"40587128801\",\n                \"nome\": \"Luan Reis\",\n                \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n            }\n        ],\n        \"movimentacao\": [\n            {\n                \"id\": 1,\n                \"nome\": \"Pagamento de conta\",\n                \"tipo\": 65,\n                \"agenciaDestino\": 1231,\n                \"contaDestino\": 12343,\n                \"digitoContaDestino\": 1,\n                \"data\": \"2023-03-14T00:32:21.977+00:00\",\n                \"status\": \"A\",\n                \"valor\": 0,\n                \"descricao\": \"Pagamento\"\n            }\n        ],\n        \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n        \"senha\": 12345678,\n        \"status\": \"A\",\n        \"saldo\": 0,\n        \"limite\": 0\n    },\n    {\n        \"id\": 2,\n        \"agencia\": 1234,\n        \"conta\": 44114,\n        \"digito\": 1,\n        \"cliente\": [\n            {\n                \"id\": 1,\n                \"cpf\": \"40587128801\",\n                \"nome\": \"Luan Reis\",\n                \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n            }\n        ],\n        \"movimentacao\": [\n            {\n                \"id\": 1,\n                \"nome\": \"Pagamento de conta\",\n                \"tipo\": 65,\n                \"agenciaDestino\": 1231,\n                \"contaDestino\": 12343,\n                \"digitoContaDestino\": 1,\n                \"data\": \"2023-03-14T00:32:21.977+00:00\",\n                \"status\": \"A\",\n                \"valor\": 0,\n                \"descricao\": \"Pagamento\"\n            }\n        ],\n        \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n        \"senha\": 12345678,\n        \"status\": \"A\",\n        \"saldo\": 0,\n        \"limite\": 0\n    },\n    {\n        \"id\": 3,\n        \"agencia\": 1234,\n        \"conta\": 44114,\n        \"digito\": 1,\n        \"cliente\": [\n            {\n                \"id\": 1,\n                \"cpf\": \"40587128801\",\n                \"nome\": \"Luan Reis\",\n                \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n            }\n        ],\n        \"movimentacao\": [\n            {\n                \"id\": 1,\n                \"nome\": \"Pagamento de conta\",\n                \"tipo\": 65,\n                \"agenciaDestino\": 1231,\n                \"contaDestino\": 12343,\n                \"digitoContaDestino\": 1,\n                \"data\": \"2023-03-14T00:32:21.977+00:00\",\n                \"status\": \"A\",\n                \"valor\": 0,\n                \"descricao\": \"Pagamento\"\n            }\n        ],\n        \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n        \"senha\": 12345678,\n        \"status\": \"A\",\n        \"saldo\": 0,\n        \"limite\": 0\n    }\n]"
+				},
+				{
+					"name": "allContas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:12:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteConta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/conta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"conta",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deleteConta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:09:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "deleteConta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:12:12 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "updateConta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"agencia\": 1111,\r\n    \"conta\": 44114,\r\n    \"digito\": 1,\r\n    \"cliente\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nome\": \"Luan Reis\",\r\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\",\r\n            \"cpf\": \"40587128801\"\r\n        }\r\n    ],\r\n    \"movimentacao\": [\r\n        {\r\n            \"id\": 0,\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }\r\n    ],\r\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\r\n    \"senha\": 12345678,\r\n    \"status\": \"A\",\r\n    \"saldo\": 0.0,\r\n    \"limite\": 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"conta"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "updateConta",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"agencia\": 1111,\r\n    \"conta\": 44114,\r\n    \"digito\": 1,\r\n    \"cliente\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nome\": \"Luan Reis\",\r\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\",\r\n            \"cpf\": \"40587128801\"\r\n        }\r\n    ],\r\n    \"movimentacao\": [\r\n        {\r\n            \"id\": 0,\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }\r\n    ],\r\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\r\n    \"senha\": 12345678,\r\n    \"status\": \"A\",\r\n    \"saldo\": 0.0,\r\n    \"limite\": 0.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:09:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"agencia\": 1111,\n    \"conta\": 44114,\n    \"digito\": 1,\n    \"cliente\": [\n        {\n            \"id\": 1,\n            \"cpf\": \"40587128801\",\n            \"nome\": \"Luan Reis\",\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n        }\n    ],\n    \"movimentacao\": [\n        {\n            \"id\": 0,\n            \"nome\": \"Pagamento de conta\",\n            \"tipo\": 65,\n            \"agenciaDestino\": 1231,\n            \"contaDestino\": 12343,\n            \"digitoContaDestino\": 1,\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\n            \"status\": \"A\",\n            \"valor\": 0,\n            \"descricao\": \"Pagamento\"\n        }\n    ],\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n    \"senha\": 12345678,\n    \"status\": \"A\",\n    \"saldo\": 0,\n    \"limite\": 0\n}"
+				},
+				{
+					"name": "updateConta",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"agencia\": 1111,\r\n    \"conta\": 44114,\r\n    \"digito\": 1,\r\n    \"cliente\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nome\": \"Luan Reis\",\r\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\",\r\n            \"cpf\": \"40587128801\"\r\n        }\r\n    ],\r\n    \"movimentacao\": [\r\n        {\r\n            \"id\": 0,\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }\r\n    ],\r\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\r\n    \"senha\": 12345678,\r\n    \"status\": \"A\",\r\n    \"saldo\": 0.0,\r\n    \"limite\": 0.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:12:23 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "detailConta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/conta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"conta",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "detailConta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:09:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"agencia\": 1234,\n    \"conta\": 44114,\n    \"digito\": 1,\n    \"cliente\": [\n        {\n            \"id\": 1,\n            \"cpf\": \"40587128801\",\n            \"nome\": \"Luan Reis\",\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n        }\n    ],\n    \"movimentacao\": [\n        {\n            \"id\": 1,\n            \"nome\": \"Pagamento de conta\",\n            \"tipo\": 65,\n            \"agenciaDestino\": 1231,\n            \"contaDestino\": 12343,\n            \"digitoContaDestino\": 1,\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\n            \"status\": \"A\",\n            \"valor\": 0,\n            \"descricao\": \"Pagamento\"\n        }\n    ],\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n    \"senha\": 12345678,\n    \"status\": \"A\",\n    \"saldo\": 0,\n    \"limite\": 0\n}"
+				},
+				{
+					"name": "detailConta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:12:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "createConta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"agencia\": 1234,\r\n    \"conta\": 44114,\r\n    \"digito\": 1,\r\n    \"cliente\": [\r\n        {   \r\n            \"id\": 1,\r\n            \"nome\": \"Luan Reis\",\r\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\",\r\n            \"cpf\": \"40587128801\"\r\n        }\r\n    ],\r\n    \"movimentacao\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }\r\n    ],\r\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\r\n    \"senha\": 12345678,\r\n    \"status\": \"A\",\r\n    \"saldo\": 0.0,\r\n    \"limite\": 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"conta"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "createConta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agencia\": 1234,\r\n    \"conta\": 44114,\r\n    \"digito\": 1,\r\n    \"cliente\": [\r\n        {   \r\n            \"id\": 1,\r\n            \"nome\": \"Luan Reis\",\r\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\",\r\n            \"cpf\": \"40587128801\"\r\n        }\r\n    ],\r\n    \"movimentacao\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nome\": \"Pagamento de conta\",\r\n            \"tipo\": 65,\r\n            \"agenciaDestino\": 1231,\r\n            \"contaDestino\": 12343,\r\n            \"digitoContaDestino\": 1,\r\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\r\n            \"status\": \"A\",\r\n            \"valor\": 0.0,\r\n            \"descricao\": \"Pagamento\"\r\n        }\r\n    ],\r\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\r\n    \"senha\": 12345678,\r\n    \"status\": \"A\",\r\n    \"saldo\": 0.0,\r\n    \"limite\": 0.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/conta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"conta"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 16 Mar 2023 20:08:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"agencia\": 1234,\n    \"conta\": 44114,\n    \"digito\": 1,\n    \"cliente\": [\n        {\n            \"id\": 1,\n            \"cpf\": \"40587128801\",\n            \"nome\": \"Luan Reis\",\n            \"dataNascimento\": \"2023-03-14T00:32:21.974+00:00\"\n        }\n    ],\n    \"movimentacao\": [\n        {\n            \"id\": 1,\n            \"nome\": \"Pagamento de conta\",\n            \"tipo\": 65,\n            \"agenciaDestino\": 1231,\n            \"contaDestino\": 12343,\n            \"digitoContaDestino\": 1,\n            \"data\": \"2023-03-14T00:32:21.977+00:00\",\n            \"status\": \"A\",\n            \"valor\": 0,\n            \"descricao\": \"Pagamento\"\n        }\n    ],\n    \"dataAbertura\": \"2023-03-14T00:32:21.978+00:00\",\n    \"senha\": 12345678,\n    \"status\": \"A\",\n    \"saldo\": 0,\n    \"limite\": 0\n}"
+				}
+			]
+		}
+	]
+}
