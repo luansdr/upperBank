@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -37,8 +38,11 @@ public class Movimentacao {
 
     private String descricao;
 
+    @ManyToOne
+    private Conta conta;
+
     public Movimentacao(String nome, String tipo, int agenciaDestino, int numeroContaDestino,
-            int digitoContaDestino, Calendar data, char status, double valor, String descricao) {
+            int digitoContaDestino, Calendar data, char status, double valor, String descricao, Conta conta) {
         this.nome = nome;
         this.tipo = tipo;
         this.agenciaDestino = agenciaDestino;
@@ -48,6 +52,7 @@ public class Movimentacao {
         this.status = status;
         this.valor = valor;
         this.descricao = descricao;
+        this.conta = conta;
 
     }
 
@@ -133,5 +138,16 @@ public class Movimentacao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
+
+    
 
 }

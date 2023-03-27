@@ -3,8 +3,18 @@ package br.com.fiap.upperBank.models;
 import java.util.Calendar;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
+@Entity
 public class Conta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int agencia;
@@ -13,9 +23,11 @@ public class Conta {
 
     private int digito;
 
+    @ManyToMany(mappedBy = "contas")
     private List<Cliente> cliente;
 
-    private List<Movimentacao> movimentacao;
+    @OneToMany(mappedBy = "conta")
+    private List<Movimentacao> movimentacoes;
 
     private Calendar dataAbertura;
 
@@ -27,18 +39,21 @@ public class Conta {
 
     private double limite;
 
-    public Conta(int agencia, int conta, int digito, List<Cliente> cliente, List<Movimentacao> movimentacao,
+    public Conta(int agencia, int conta, int digito, List<Cliente> cliente, List<Movimentacao> movimentacoes,
             Calendar dataAbertura, int senha, char status, double saldo, double limite) {
         this.agencia = agencia;
         this.conta = conta;
         this.digito = digito;
         this.cliente = cliente;
-        this.movimentacao = movimentacao;
+        this.movimentacoes = movimentacoes;
         this.dataAbertura = dataAbertura;
         this.senha = senha;
         this.status = status;
         this.saldo = saldo;
         this.limite = limite;
+    }
+
+    protected Conta() {
     }
 
     public Long getId() {
@@ -77,16 +92,16 @@ public class Conta {
         return cliente;
     }
 
-    public void setCliente(List<Cliente> cliente) {
+    public void setcliente(List<Cliente> cliente) {
         this.cliente = cliente;
     }
 
-    public List<Movimentacao> getMovimentacao() {
-        return movimentacao;
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
     }
 
-    public void setMovimentacao(List<Movimentacao> movimentacao) {
-        this.movimentacao = movimentacao;
+    public void setMovimentacao(List<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
     }
 
     public Calendar getDataAbertura() {
@@ -127,13 +142,6 @@ public class Conta {
 
     public void setSenha(int senha) {
         this.senha = senha;
-    }
-
-    @Override
-    public String toString() {
-        return "Conta [id=" + id + ", agencia=" + agencia + ", conta=" + conta + ", digito=" + digito + ", cliente="
-                + cliente + ", movimentacao=" + movimentacao + ", dataAbertura=" + dataAbertura + ", senha=" + senha
-                + ", status=" + status + ", saldo=" + saldo + ", limite=" + limite + "]";
     }
 
 }

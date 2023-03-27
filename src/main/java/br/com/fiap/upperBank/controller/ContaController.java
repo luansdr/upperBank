@@ -1,10 +1,12 @@
 package br.com.fiap.upperBank.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,22 +15,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Conta;
+import br.com.fiap.upperBank.repository.ClienteRepository;
+import br.com.fiap.upperBank.repository.ContaRepository;
 
 @RestController
+@RequestMapping("api/conta")
 public class ContaController {
 
-  static List<Conta> contas = new ArrayList<Conta>();
+  @Autowired
+  private ContaRepository contaRepository;
 
-  Logger log = LoggerFactory.getLogger(ContaController.class);
+  @Autowired
+  private ClienteRepository clienteRepository;
 
   // GET ALL
-  @GetMapping("/api/conta")
+  @GetMapping
   public ResponseEntity<List<Conta>> show() {
-
+    List<Conta> contas = contaRepository.findAll();
+    contas.forEach(c -> System.out.println(c));
     return contas.isEmpty()
         ? ResponseEntity.noContent().build()
         : ResponseEntity.ok(contas);
@@ -36,10 +45,10 @@ public class ContaController {
   }
 
   // GET DETAILS
-  @GetMapping("/api/conta/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<Conta> show(@PathVariable Long id) {
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(id)).findFirst();
+    var contasEncontrada = contaRepository.findById(id);
 
     return contasEncontrada.isEmpty()
         ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
@@ -47,40 +56,72 @@ public class ContaController {
   }
 
   // POST
-  @ResponseBody
-  @PostMapping("api/conta")
-  public ResponseEntity<Conta> create(@RequestBody Conta conta) {
+  // @ResponseBody
+  // @PostMapping
+  // public ResponseEntity<Conta> create(@RequestBody Conta conta) {
 
-    conta.setId(contas.size() + 1l);
-    contas.add(conta);
-    return ResponseEntity.status(HttpStatus.CREATED).body(conta);
+  // List<Cliente> clientes = conta.getCliente();
+  // for (Cliente cliente : clientes) {
+  // if (!clienteRepository.existsById(cliente.getId())) {
+  // return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+  // }
+  // }
+
+  // Conta contaCriada = contaRepository.save(conta);
+
+  // return ResponseEntity.status(HttpStatus.CREATED).body(contaCriada);
+  // }
+
+  @PostMapping("/{id}/contas")
+  public ResponseEntity<?> criarContaParaCliente(@PathVariable Long id, @RequestBody Conta conta) {
+
+    // busca o cliente pelo id
+    Optional<Cliente> optionalCliente = clienteRepository.findById(id);
+
+    if (optionalCliente.isPresent()) {
+      Cliente clientes = optionalCliente.get();
+      // cria a conta a partir do DTO
+      // Conta conta = new Conta(contaDTO.getAgencia(), contaDTO.getConta(), contaDTO.getDigito(),
+      //     Arrays.asList(cliente), new ArrayList<>(), Calendar.getInstance(), contaDTO.getSenha(),
+      //     'A', contaDTO.getSaldo(), contaDTO.getLimite());
+
+      // salva a conta no repositório
+      contaRepository.save(conta);
+
+      // adiciona a conta ao cliente e salva no repositório
+      clientes.getContas().add(conta);
+      clienteRepository.save(clientes);
+
+      return ResponseEntity.ok().body(conta);
+    } else {
+      return ResponseEntity.notFound().build();
+    }
   }
 
   // PUT
-  @PutMapping("/api/conta")
+  @PutMapping
   public ResponseEntity<Conta> update(@RequestBody Conta conta) {
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(conta.getId())).findFirst();
+    var contasEncontrada = contaRepository.findById(conta.getId());
 
     if (contasEncontrada.isEmpty()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-    contas.remove(contasEncontrada.get());
-    contas.add(conta);
+    contaRepository.save(conta);
 
     return ResponseEntity.ok().body(conta);
   }
 
   // DELETE
-  @DeleteMapping("/api/conta/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity<Conta> delete(@PathVariable Long id) {
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(id)).findFirst();
+    var contasEncontrada = contaRepository.findById(id);
 
     if (contasEncontrada.isEmpty()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-    contas.remove(contasEncontrada.get());
+    contaRepository.delete(contasEncontrada.get());
 
     return ResponseEntity.noContent().build();
   }
