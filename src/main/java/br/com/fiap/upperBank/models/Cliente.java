@@ -2,10 +2,13 @@ package br.com.fiap.upperBank.models;
 
 import java.util.Calendar;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Cliente {
@@ -18,6 +21,8 @@ public class Cliente {
 
     private String nome;
 
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar dataNascimento;
 
     public Cliente(String cpf, String nome, Calendar dataNascimento) {
@@ -27,6 +32,14 @@ public class Cliente {
     }
 
     protected Cliente() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCpf() {
@@ -51,19 +64,6 @@ public class Cliente {
 
     public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
     }
 
 }

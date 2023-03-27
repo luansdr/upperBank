@@ -42,7 +42,8 @@ public class MovimentacaoController {
         if (movimentacoesEncontradas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.ok(movimentacoesEncontradas.get());
+
+        return ResponseEntity.ok().body(movimentacoesEncontradas.get());
     }
 
     // POST
@@ -81,4 +82,5 @@ public class MovimentacaoController {
 
         return ResponseEntity.noContent().build();
     }
+
 }

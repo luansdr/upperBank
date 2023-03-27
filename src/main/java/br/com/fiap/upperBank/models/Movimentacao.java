@@ -2,11 +2,15 @@ package br.com.fiap.upperBank.models;
 
 import java.util.Calendar;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Movimentacao {
@@ -17,14 +21,16 @@ public class Movimentacao {
 
     private String nome;
 
-    private int tipo;
+    private String tipo;
 
     private int agenciaDestino;
 
-    private int contaDestino;
+    private int numeroContaDestino;
 
     private int digitoContaDestino;
 
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar data;
 
     private char status;
@@ -33,13 +39,12 @@ public class Movimentacao {
 
     private String descricao;
 
-    public Movimentacao(String nome, int tipo, int agenciaDestino, int contaDestino,
-            int digitoContaDestino,
-            Calendar data, char status, double valor, String descricao) {
+    public Movimentacao(String nome, String tipo, int agenciaDestino, int numeroContaDestino,
+            int digitoContaDestino, Calendar data, char status, double valor, String descricao) {
         this.nome = nome;
         this.tipo = tipo;
         this.agenciaDestino = agenciaDestino;
-        this.contaDestino = contaDestino;
+        this.numeroContaDestino = numeroContaDestino;
         this.digitoContaDestino = digitoContaDestino;
         this.data = data;
         this.status = status;
@@ -48,22 +53,16 @@ public class Movimentacao {
 
     }
 
-    
-
     protected Movimentacao() {
     }
-
-
 
     public Long getId() {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNome() {
         return nome;
@@ -73,11 +72,11 @@ public class Movimentacao {
         this.nome = nome;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -89,12 +88,12 @@ public class Movimentacao {
         this.agenciaDestino = agenciaDestino;
     }
 
-    public int getContaDestino() {
-        return contaDestino;
+    public int getNumeroContaDestino() {
+        return numeroContaDestino;
     }
 
-    public void setContaDestino(int contaDestino) {
-        this.contaDestino = contaDestino;
+    public void setNumeroContaDestino(int numeroContaDestino) {
+        this.numeroContaDestino = numeroContaDestino;
     }
 
     public int getDigitoContaDestino() {
@@ -136,13 +135,5 @@ public class Movimentacao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    @Override
-    public String toString() {
-        return "Movimentacao [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", agenciaDestino=" + agenciaDestino
-                + ", contaDestino=" + contaDestino + ", digitoContaDestino=" + digitoContaDestino + ", data=" + data
-                + ", status=" + status + ", valor=" + valor + ", descricao=" + descricao;
-    }
-
 
 }
