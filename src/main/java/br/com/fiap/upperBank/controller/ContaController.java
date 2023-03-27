@@ -52,7 +52,7 @@ public class ContaController {
         : ResponseEntity.ok(contasEncontrada.get());
   }
 
-  @PostMapping("/{id}/contas")
+  @PostMapping("/{id}")
   public ResponseEntity<?> criarContaParaCliente(@PathVariable Long id, @RequestBody Conta conta) {
 
     Optional<Cliente> optionalCliente = clienteRepository.findById(id);
