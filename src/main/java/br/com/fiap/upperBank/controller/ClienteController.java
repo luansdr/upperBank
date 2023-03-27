@@ -1,8 +1,9 @@
 package br.com.fiap.upperBank.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,29 +12,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.upperBank.exceptions.ErroResponseExceptions;
 import br.com.fiap.upperBank.models.Cliente;
+import br.com.fiap.upperBank.repository.ClienteRepository;
 
 @RestController
+@RequestMapping("api/cliente")
 public class ClienteController {
 
-    List<Cliente> clientes = new ArrayList<Cliente>();
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     // GET ALL
-    @GetMapping("/api/cliente")
+    @GetMapping
     public ResponseEntity<List<Cliente>> show() {
+        List<Cliente> clientes = clienteRepository.findAll();
+
         return clientes.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok().body(clientes);
+                ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+                : ResponseEntity.ok(clientes);
     }
 
     // GET DETAILS
-    @GetMapping("/api/cliente/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Cliente> show(@PathVariable Long id) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(id)).findFirst();
+        var clientesEncontrada = clienteRepository.findById(id);
 
         return clientesEncontrada.isEmpty()
                 ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
@@ -43,38 +51,45 @@ public class ClienteController {
 
     // POST
     @ResponseBody
-    @PostMapping("api/cliente")
-    public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
-        cliente.setId(clientes.size() + 1l);
-        clientes.add(cliente);
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+
+        Optional<Cliente> clienteExistente = clienteRepository.findBycpf(cliente.getCpf());
+
+        if (clienteExistente.isPresent()) {
+            return ResponseEntity.badRequest().body(new ErroResponseExceptions("CPF já cadastrado").getMessage());
+        }
+
+        clienteRepository.save(cliente);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
     // PUT
-    @PutMapping("/api/cliente")
+    @PutMapping
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(cliente.getId())).findFirst();
+        var clientesEncontrada = clienteRepository.findById(cliente.getId());
 
         if (clientesEncontrada.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        clientes.remove(clientesEncontrada.get());
-        clientes.add(cliente);
+
+        clienteRepository.save(cliente);
 
         return ResponseEntity.ok().body(cliente);
     }
 
     // DELETE
-    @DeleteMapping("/api/cliente/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> delete(@PathVariable Long id) {
 
-        var clientesEncontrada = clientes.stream().filter(c -> c.getId().equals(id)).findFirst();
+        var clientesEncontrada = clienteRepository.findById(id);
 
         if (clientesEncontrada.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        clientes.remove(clientesEncontrada.get());
+        clienteRepository.delete(clientesEncontrada.get());
 
         return ResponseEntity.noContent().build();
     }

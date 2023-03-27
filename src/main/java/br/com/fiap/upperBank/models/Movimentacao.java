@@ -2,8 +2,17 @@ package br.com.fiap.upperBank.models;
 
 import java.util.Calendar;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
 public class Movimentacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -38,6 +47,13 @@ public class Movimentacao {
         this.descricao = descricao;
 
     }
+
+    
+
+    protected Movimentacao() {
+    }
+
+
 
     public Long getId() {
         return id;

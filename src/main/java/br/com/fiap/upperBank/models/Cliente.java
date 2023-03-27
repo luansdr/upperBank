@@ -2,8 +2,16 @@ package br.com.fiap.upperBank.models;
 
 import java.util.Calendar;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String cpf;
@@ -16,6 +24,9 @@ public class Cliente {
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
+    }
+
+    protected Cliente() {
     }
 
     public String getCpf() {
@@ -54,8 +65,5 @@ public class Cliente {
     public String toString() {
         return "Cliente [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
     }
-
-
-    
 
 }
