@@ -1,8 +1,5 @@
 package br.com.fiap.upperBank.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,40 +52,15 @@ public class ContaController {
         : ResponseEntity.ok(contasEncontrada.get());
   }
 
-  // POST
-  // @ResponseBody
-  // @PostMapping
-  // public ResponseEntity<Conta> create(@RequestBody Conta conta) {
-
-  // List<Cliente> clientes = conta.getCliente();
-  // for (Cliente cliente : clientes) {
-  // if (!clienteRepository.existsById(cliente.getId())) {
-  // return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-  // }
-  // }
-
-  // Conta contaCriada = contaRepository.save(conta);
-
-  // return ResponseEntity.status(HttpStatus.CREATED).body(contaCriada);
-  // }
-
   @PostMapping("/{id}/contas")
   public ResponseEntity<?> criarContaParaCliente(@PathVariable Long id, @RequestBody Conta conta) {
 
-    // busca o cliente pelo id
     Optional<Cliente> optionalCliente = clienteRepository.findById(id);
 
     if (optionalCliente.isPresent()) {
       Cliente clientes = optionalCliente.get();
-      // cria a conta a partir do DTO
-      // Conta conta = new Conta(contaDTO.getAgencia(), contaDTO.getConta(), contaDTO.getDigito(),
-      //     Arrays.asList(cliente), new ArrayList<>(), Calendar.getInstance(), contaDTO.getSenha(),
-      //     'A', contaDTO.getSaldo(), contaDTO.getLimite());
-
-      // salva a conta no repositório
       contaRepository.save(conta);
 
-      // adiciona a conta ao cliente e salva no repositório
       clientes.getContas().add(conta);
       clienteRepository.save(clientes);
 
