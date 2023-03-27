@@ -1,8 +1,9 @@
 package br.com.fiap.upperBank.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,72 +12,60 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.upperBank.models.Conta;
-import br.com.fiap.upperBank.models.Movimentacao;;
-
+import br.com.fiap.upperBank.models.Movimentacao;
+import br.com.fiap.upperBank.repository.MovimentacaoRepository;;
 @RestController
+@RequestMapping("api/movimentacao")
 public class MovimentacaoController {
 
-    List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
+    @Autowired
+    private MovimentacaoRepository movimentacaoRepository;
 
-    // GET ALL
-    @GetMapping("/api/movimentacao")
-    public ResponseEntity<List<Movimentacao>> show() {
-        return movimentacoes.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok().body(movimentacoes);
+    @GetMapping
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacaoRepository.findAll();
     }
 
-    // GET DETAILS
-    @GetMapping("/api/movimentacao/{id}")
-    public ResponseEntity<Movimentacao> show(@PathVariable Long id) {
-
-        var movimentacoesEncontradas = movimentacoes.stream().filter(c -> c.getId().equals(id)).findFirst();
-        if (movimentacoesEncontradas.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @GetMapping("/{id}")
+    public ResponseEntity<Movimentacao> getMovimentacaoById(@PathVariable Long id) {
+        Optional<Movimentacao> movimentacao = movimentacaoRepository.findById(id);
+        if (movimentacao.isPresent()) {
+            return ResponseEntity.ok(movimentacao.get());
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(movimentacoesEncontradas.get());
     }
 
-    // POST
-    @ResponseBody
-    @PostMapping("api/movimentacao")
-    public ResponseEntity<Movimentacao> create(@RequestBody Movimentacao movimentacao) {
-
-        movimentacao.setId(movimentacoes.size() + 1l);
-        movimentacoes.add(movimentacao);
+    @PostMapping
+    public ResponseEntity<Movimentacao> createMovimentacao(@RequestBody Movimentacao movimentacao) {
+        movimentacao = movimentacaoRepository.save(movimentacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(movimentacao);
     }
 
-    // PUT
-    @PutMapping("/api/movimentacao")
-    public ResponseEntity<Movimentacao> update(@RequestBody Movimentacao movimentacao) {
-
-        var movimentacoesEncontradas = movimentacoes.stream().filter(c -> c.getId().equals(movimentacao.getId())).findFirst();
-
-        if (movimentacoesEncontradas.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PutMapping("/{id}")
+    public ResponseEntity<Movimentacao> updateMovimentacao(@PathVariable Long id, @RequestBody Movimentacao movimentacaoAtualizada) {
+        Optional<Movimentacao> movimentacao = movimentacaoRepository.findById(id);
+        if (movimentacao.isPresent()) {
+            movimentacaoAtualizada.setId(movimentacao.get().getId());
+            movimentacaoAtualizada = movimentacaoRepository.save(movimentacaoAtualizada);
+            return ResponseEntity.ok(movimentacaoAtualizada);
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        movimentacoes.remove(movimentacoesEncontradas.get());
-        movimentacoes.add(movimentacao);
-
-        return ResponseEntity.ok().body(movimentacao);
     }
 
-    // DELETE
-    @DeleteMapping("/api/movimentacao/{id}")
-    public ResponseEntity<Conta> delete(@PathVariable Long id) {
-
-        var movimentacoesEncontradas = movimentacoes.stream().filter(c -> c.getId().equals(id)).findFirst();
-
-        if (movimentacoesEncontradas.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovimentacao(@PathVariable Long id) {
+        Optional<Movimentacao> movimentacao = movimentacaoRepository.findById(id);
+        if (movimentacao.isPresent()) {
+            movimentacaoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        movimentacoes.remove(movimentacoesEncontradas.get());
-
-        return ResponseEntity.noContent().build();
     }
+
 }

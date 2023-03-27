@@ -1,39 +1,74 @@
+
 package br.com.fiap.upperBank.models;
+
 
 import java.util.Calendar;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
 public class Conta {
-
+    
+    @Id
+    @Column(name = "conta_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(nullable = false)
     private int agencia;
-
-    private int conta;
-
+    
+    @Column(nullable = false)
+    private int numero;
+    
+    @Column(nullable = false)
     private int digito;
-
+    
+    @ManyToMany
+    @JoinTable(name = "conta_cliente",
+            joinColumns = @JoinColumn(name = "conta_id"),
+            inverseJoinColumns = @JoinColumn(name = "cliente_id"))
     private List<Cliente> cliente;
-
-    private List<Movimentacao> movimentacao;
-
+    
+    @OneToMany(mappedBy = "conta")
+    private List<Movimentacao> movimentacoes;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar dataAbertura;
-
+    
+    @Column(nullable = false)
     private int senha;
-
+    
+    @Column(nullable = false)
     private char status;
-
+    
+    @Column(nullable = false)
     private double saldo;
-
+    
+    @Column(nullable = false)
     private double limite;
 
-    public Conta(int agencia, int conta, int digito, List<Cliente> cliente, List<Movimentacao> movimentacao,
+    protected Conta() {
+    }
+
+    public Conta(int agencia, int numero, int digito, List<Cliente> cliente, List<Movimentacao> movimentacoes,
             Calendar dataAbertura, int senha, char status, double saldo, double limite) {
         this.agencia = agencia;
-        this.conta = conta;
+        this.numero = numero;
         this.digito = digito;
         this.cliente = cliente;
-        this.movimentacao = movimentacao;
+        this.movimentacoes = movimentacoes;
         this.dataAbertura = dataAbertura;
         this.senha = senha;
         this.status = status;
@@ -57,12 +92,12 @@ public class Conta {
         this.agencia = agencia;
     }
 
-    public int getConta() {
-        return conta;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setConta(int conta) {
-        this.conta = conta;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public int getDigito() {
@@ -73,20 +108,20 @@ public class Conta {
         this.digito = digito;
     }
 
-    public List<Cliente> getCliente() {
+    public List<Cliente> getcliente() {
         return cliente;
     }
 
-    public void setCliente(List<Cliente> cliente) {
+    public void setcliente(List<Cliente> cliente) {
         this.cliente = cliente;
     }
 
-    public List<Movimentacao> getMovimentacao() {
-        return movimentacao;
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
     }
 
-    public void setMovimentacao(List<Movimentacao> movimentacao) {
-        this.movimentacao = movimentacao;
+    public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
     }
 
     public Calendar getDataAbertura() {
@@ -97,30 +132,6 @@ public class Conta {
         this.dataAbertura = dataAbertura;
     }
 
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
-
-    public Double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(Double limite) {
-        this.limite = limite;
-    }
-
     public int getSenha() {
         return senha;
     }
@@ -129,11 +140,33 @@ public class Conta {
         this.senha = senha;
     }
 
-    @Override
-    public String toString() {
-        return "Conta [id=" + id + ", agencia=" + agencia + ", conta=" + conta + ", digito=" + digito + ", cliente="
-                + cliente + ", movimentacao=" + movimentacao + ", dataAbertura=" + dataAbertura + ", senha=" + senha
-                + ", status=" + status + ", saldo=" + saldo + ", limite=" + limite + "]";
+    public char getStatus() {
+        return status;
     }
 
+    public void setStatus(char status) {
+        this.status = status;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public double getLimite() {
+        return limite;
+    }
+
+    public void setLimite(double limite) {
+        this.limite = limite;
+    }
+
+    
+
+    
+    
+    
 }

@@ -1,10 +1,10 @@
 package br.com.fiap.upperBank.controller;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,76 +13,85 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Conta;
+import br.com.fiap.upperBank.repository.ClienteRepository;
+import br.com.fiap.upperBank.repository.ContaRepository;
+import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("api/conta")
 public class ContaController {
 
-  static List<Conta> contas = new ArrayList<Conta>();
+  @Autowired
+  private ContaRepository contaRepository;
 
-  Logger log = LoggerFactory.getLogger(ContaController.class);
+  @Autowired
+  private ClienteRepository clienteRepository;
 
-  // GET ALL
-  @GetMapping("/api/conta")
-  public ResponseEntity<List<Conta>> show() {
-
-    return contas.isEmpty()
-        ? ResponseEntity.noContent().build()
-        : ResponseEntity.ok(contas);
-
+  @GetMapping
+  public List<Conta> listar() {
+    return contaRepository.findAll();
   }
 
-  // GET DETAILS
-  @GetMapping("/api/conta/{id}")
-  public ResponseEntity<Conta> show(@PathVariable Long id) {
+  @GetMapping("/{id}")
+  public ResponseEntity<Conta> buscar(@PathVariable Long id) {
+    Optional<Conta> conta = contaRepository.findById(id);
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(id)).findFirst();
-
-    return contasEncontrada.isEmpty()
-        ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
-        : ResponseEntity.ok(contasEncontrada.get());
-  }
-
-  // POST
-  @ResponseBody
-  @PostMapping("api/conta")
-  public ResponseEntity<Conta> create(@RequestBody Conta conta) {
-
-    conta.setId(contas.size() + 1l);
-    contas.add(conta);
-    return ResponseEntity.status(HttpStatus.CREATED).body(conta);
-  }
-
-  // PUT
-  @PutMapping("/api/conta")
-  public ResponseEntity<Conta> update(@RequestBody Conta conta) {
-
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(conta.getId())).findFirst();
-
-    if (contasEncontrada.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    if (conta.isPresent()) {
+      return ResponseEntity.ok(conta.get());
     }
-    contas.remove(contasEncontrada.get());
-    contas.add(conta);
 
-    return ResponseEntity.ok().body(conta);
+    return ResponseEntity.notFound().build();
   }
 
-  // DELETE
-  @DeleteMapping("/api/conta/{id}")
-  public ResponseEntity<Conta> delete(@PathVariable Long id) {
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public Conta adicionar(@Valid @RequestBody Conta conta) {
+      conta.setDataAbertura(Calendar.getInstance());
+      conta.setStatus('A');
+      
+      List<Cliente> clientes = conta.getcliente();
+      for (Cliente cliente : clientes) {
+          Optional<Cliente> clienteExistente = clienteRepository.findBycpf(cliente.getCpf());
+          if (clienteExistente.isPresent()) {
+              cliente = clienteExistente.get();
+          }
 
-    var contasEncontrada = contas.stream().filter(c -> c.getId().equals(id)).findFirst();
+      
+          // cliente.addConta(conta);
+          clienteRepository.save(cliente);
+        }
+      
+      return contaRepository.save(conta);
+  }
+  
 
-    if (contasEncontrada.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+  @PutMapping("/{id}")
+  public ResponseEntity<Conta> atualizar(@PathVariable Long id, @Valid @RequestBody Conta conta) {
+    if (!contaRepository.existsById(id)) {
+      return ResponseEntity.notFound().build();
     }
-    contas.remove(contasEncontrada.get());
 
+    conta.setId(id);
+    conta.setStatus('A');
+    conta.setDataAbertura(Calendar.getInstance());
+    contaRepository.save(conta);
+
+    return ResponseEntity.ok(conta);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> remover(@PathVariable Long id) {
+    if (!contaRepository.existsById(id)) {
+      return ResponseEntity.notFound().build();
+    }
+
+    contaRepository.deleteById(id);
     return ResponseEntity.noContent().build();
   }
-
 }
