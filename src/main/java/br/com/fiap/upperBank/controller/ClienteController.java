@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.upperBank.exceptions.ErroResponseExceptions;
+import br.com.fiap.upperBank.exceptions.RestNotFoundException;
 import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.repository.ClienteRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/cliente")
@@ -41,18 +43,18 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> show(@PathVariable Long id) {
 
-        var clientesEncontrada = clienteRepository.findById(id);
+        var clientesEncontrada = clienteRepository.findById(id)
+                .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
+        ;
 
-        return clientesEncontrada.isEmpty()
-                ? ResponseEntity.status(HttpStatus.NOT_FOUND).build()
-                : ResponseEntity.ok(clientesEncontrada.get());
+        return ResponseEntity.ok(clientesEncontrada);
 
     }
 
     // POST
     @ResponseBody
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+    public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente) {
 
         Optional<Cliente> clienteExistente = clienteRepository.findBycpf(cliente.getCpf());
 
@@ -67,16 +69,12 @@ public class ClienteController {
 
     // PUT
     @PutMapping
-    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> update(@Valid @RequestBody Cliente cliente) {
 
-        var clientesEncontrada = clienteRepository.findById(cliente.getId());
-
-        if (clientesEncontrada.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        clienteRepository.findById(cliente.getId())
+                .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
 
         clienteRepository.save(cliente);
-
         return ResponseEntity.ok().body(cliente);
     }
 
@@ -84,12 +82,10 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> delete(@PathVariable Long id) {
 
-        var clientesEncontrada = clienteRepository.findById(id);
-
-        if (clientesEncontrada.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        clienteRepository.delete(clientesEncontrada.get());
+        var clientesEncontrada = clienteRepository.findById(id)
+                .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
+        ;
+        clienteRepository.delete(clientesEncontrada);
 
         return ResponseEntity.noContent().build();
     }

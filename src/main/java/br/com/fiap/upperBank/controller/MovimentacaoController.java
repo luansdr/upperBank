@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.models.Movimentacao;
-import br.com.fiap.upperBank.repository.MovimentacaoRepository;;
+import br.com.fiap.upperBank.repository.MovimentacaoRepository;
+import jakarta.validation.Valid;;
 
 @RestController
 @RequestMapping("api/movimentacao")
@@ -49,7 +50,7 @@ public class MovimentacaoController {
     // POST
     @ResponseBody
     @PostMapping
-    public ResponseEntity<Movimentacao> create(@RequestBody Movimentacao movimentacao) {
+    public ResponseEntity<Movimentacao> create(@Valid @RequestBody Movimentacao movimentacao) {
 
         movimentacaoRepository.save(movimentacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(movimentacao);
@@ -57,7 +58,7 @@ public class MovimentacaoController {
 
     // PUT
     @PutMapping
-    public ResponseEntity<Movimentacao> update(@RequestBody Movimentacao movimentacao) {
+    public ResponseEntity<Movimentacao> update(@Valid @RequestBody Movimentacao movimentacao) {
 
         var movimentacoesEncontradas = movimentacaoRepository.findById(movimentacao.getId());
 

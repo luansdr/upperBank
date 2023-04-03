@@ -3,14 +3,13 @@ package br.com.fiap.upperBank.models;
 import java.util.Calendar;
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
@@ -19,12 +18,14 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String cpf;
 
+    
+    @NotBlank
     private String nome;
 
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
+    @NotNull
     private Calendar dataNascimento;
 
     @ManyToMany

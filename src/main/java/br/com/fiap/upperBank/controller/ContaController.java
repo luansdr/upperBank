@@ -19,6 +19,7 @@ import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.repository.ClienteRepository;
 import br.com.fiap.upperBank.repository.ContaRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/conta")
@@ -53,7 +54,7 @@ public class ContaController {
   }
 
   @PostMapping("/{id}")
-  public ResponseEntity<?> criarContaParaCliente(@PathVariable Long id, @RequestBody Conta conta) {
+  public ResponseEntity<?> criarContaParaCliente(@Valid  @PathVariable Long id, @RequestBody Conta conta) {
 
     Optional<Cliente> optionalCliente = clienteRepository.findById(id);
 
@@ -72,7 +73,7 @@ public class ContaController {
 
   // PUT
   @PutMapping
-  public ResponseEntity<Conta> update(@RequestBody Conta conta) {
+  public ResponseEntity<Conta> update(@Valid @RequestBody Conta conta) {
 
     var contasEncontrada = contaRepository.findById(conta.getId());
 
