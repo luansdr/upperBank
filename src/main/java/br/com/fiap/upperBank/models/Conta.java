@@ -14,8 +14,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Conta {
 
     @Id
@@ -61,110 +69,5 @@ public class Conta {
     @NotNull
     @Min(value = 0)
     private double limite;
-
-    public Conta(int agencia, int conta, int digito, List<Cliente> cliente, List<Movimentacao> movimentacoes,
-            Calendar dataAbertura, String senha, char status, double saldo, double limite) {
-        this.agencia = agencia;
-        this.conta = conta;
-        this.digito = digito;
-        this.cliente = cliente;
-        this.movimentacoes = movimentacoes;
-        this.dataAbertura = dataAbertura;
-        this.senha = senha;
-        this.status = status;
-        this.saldo = saldo;
-        this.limite = limite;
-    }
-
-    protected Conta() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
-    }
-
-    public int getConta() {
-        return conta;
-    }
-
-    public void setConta(int conta) {
-        this.conta = conta;
-    }
-
-    public int getDigito() {
-        return digito;
-    }
-
-    public void setDigito(int digito) {
-        this.digito = digito;
-    }
-
-    public List<Cliente> getCliente() {
-        return cliente;
-    }
-
-    public void setcliente(List<Cliente> cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<Movimentacao> getMovimentacoes() {
-        return movimentacoes;
-    }
-
-    public void setMovimentacao(List<Movimentacao> movimentacoes) {
-        this.movimentacoes = movimentacoes;
-    }
-
-    public Calendar getDataAbertura() {
-        return dataAbertura;
-    }
-
-    public void setDataAbertura(Calendar dataAbertura) {
-        this.dataAbertura = dataAbertura;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
-
-    public Double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(Double limite) {
-        this.limite = limite;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
 }

@@ -10,8 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Builder
 public class Cliente {
 
     @Id
@@ -30,57 +40,4 @@ public class Cliente {
 
     @ManyToMany
     private List<Conta> contas;
-
-
-    public Cliente(String cpf, String nome, Calendar dataNascimento, List<Conta> contas) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.contas = contas;
-    }
-
-    protected Cliente() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Calendar getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Calendar dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public List<Conta> getContas() {
-        return contas;
-    }
-
-    public void setContas(List<Conta> contas) {
-        this.contas = contas;
-    }
-    
-
-}
+}   
