@@ -1,9 +1,6 @@
 package br.com.fiap.upperBank.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.models.Movimentacao;
 import br.com.fiap.upperBank.repository.MovimentacaoRepository;
@@ -46,6 +42,8 @@ public class MovimentacaoController {
     // GET DETAILS
     @GetMapping("/{id}")
     public ResponseEntity<Movimentacao> show(@PathVariable Long id) {
+
+
         var movimentacoesEncontradas = movimentacaoRepository.findById(id);
         if (movimentacoesEncontradas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

@@ -1,8 +1,15 @@
 package br.com.fiap.upperBank.models;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.upperBank.controller.ClienteController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,4 +47,13 @@ public class Cliente {
 
     @ManyToMany
     private List<Conta> contas;
+
+    public EntityModel<Cliente> toEntityModel(){
+        return EntityModel.of(
+            this, 
+            linkTo(methodOn(ClienteController.class).show(id)).withSelfRel(),
+            linkTo(methodOn(ClienteController.class).destroy(id)).withRel("delete"),
+            linkTo(methodOn(ClienteController.class).index(null, Pageable.unpaged())).withRel("all")
+        );
+    }
 }   

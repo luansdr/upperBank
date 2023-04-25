@@ -3,7 +3,10 @@ package br.com.fiap.upperBank.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,14 +24,21 @@ import br.com.fiap.upperBank.exceptions.ErroResponseExceptions;
 import br.com.fiap.upperBank.exceptions.RestNotFoundException;
 import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.repository.ClienteRepository;
+import ch.qos.logback.classic.Logger;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/cliente")
 public class ClienteController {
 
+    Logger log = LoggerFactory.getLogger(ClienteController.class.getName());
+
+
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    PagedResourcesAssembler<Object> assembler;
 
     // GET ALL
     @GetMapping
@@ -42,13 +52,9 @@ public class ClienteController {
 
     // GET DETAILS
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> show(@PathVariable Long id) {
-
-        var clientesEncontrada = clienteRepository.findById(id)
-                .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
-        ;
-
-        return ResponseEntity.ok(clientesEncontrada);
+    public EntityModel<Cliente> show(@PathVariable Long id) {
+        log.info("buscando cliente pelo id " + id);
+        return getClient(id).toEntityModel();
 
     }
 
