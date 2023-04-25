@@ -54,7 +54,7 @@ public class ClienteController {
     @GetMapping("/{id}")
     public EntityModel<Cliente> show(@PathVariable Long id) {
         log.info("buscando cliente pelo id " + id);
-        return getClient(id).toEntityModel();
+        return getCliente(id).toEntityModel();
 
     }
 
@@ -87,14 +87,14 @@ public class ClienteController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Cliente> delete(@PathVariable Long id) {
+    public EntityModel<Cliente> delete(@PathVariable Long id) {
 
         var clientesEncontrada = clienteRepository.findById(id)
                 .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
         ;
         clienteRepository.delete(clientesEncontrada);
 
-        return ResponseEntity.noContent().build();
+        return clientesEncontrada.toEntityModel();
     }
 
 }
