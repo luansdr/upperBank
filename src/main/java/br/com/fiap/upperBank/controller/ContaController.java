@@ -62,7 +62,7 @@ public class ContaController {
       Cliente clientes = optionalCliente.get();
       contaRepository.save(conta);
 
-      clientes.getContas().add(conta);
+      // clientes.getContas().add(conta);
       clienteRepository.save(clientes);
 
       return ResponseEntity.ok().body(conta);
