@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.upperBank.exceptions.RestNotFoundException;
 import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.repository.ClienteRepository;
@@ -56,7 +57,7 @@ public class ContaController {
   @PostMapping("/{id}")
   public ResponseEntity<?> criarContaParaCliente(@Valid  @PathVariable Long id, @RequestBody Conta conta) {
 
-    Optional<Cliente> optionalCliente = clienteRepository.findById(id);
+    Optional<Cliente> optionalCliente = clienteRepository.findById(getConta(id).getId());
 
     if (optionalCliente.isPresent()) {
       Cliente clientes = optionalCliente.get();
@@ -98,5 +99,11 @@ public class ContaController {
 
     return ResponseEntity.noContent().build();
   }
+
+  private Conta getConta(Long id) {
+    return contaRepository.findById(id)
+            .orElseThrow(() -> new RestNotFoundException("conta não encontrada"));
+}
+  
 
 }

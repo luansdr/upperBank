@@ -43,7 +43,7 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> show(@PathVariable Long id) {
 
-        var clientesEncontrada = clienteRepository.findById(id)
+        var clientesEncontrada = clienteRepository.findById(getCliente(id).getId())
                 .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
         ;
 
@@ -88,6 +88,12 @@ public class ClienteController {
         clienteRepository.delete(clientesEncontrada);
 
         return ResponseEntity.noContent().build();
+    }
+
+
+    private Cliente getCliente(Long id) {
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new RestNotFoundException("conta não encontrada"));
     }
 
 }
