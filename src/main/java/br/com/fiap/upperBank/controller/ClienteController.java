@@ -20,17 +20,26 @@ import br.com.fiap.upperBank.exceptions.ErroResponseExceptions;
 import br.com.fiap.upperBank.exceptions.RestNotFoundException;
 import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.repository.ClienteRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/cliente")
+@Tag(name = "Cliente")
 public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
-    // GET ALL
     @GetMapping
+    @Operation(summary = "Obter todos os clientes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de clientes encontrada"),
+            @ApiResponse(responseCode = "404", description = "Nenhum cliente encontrado")
+    })
     public ResponseEntity<List<Cliente>> show() {
         List<Cliente> clientes = clienteRepository.findAll();
 
@@ -39,21 +48,28 @@ public class ClienteController {
                 : ResponseEntity.ok(clientes);
     }
 
-    // GET DETAILS
     @GetMapping("/{id}")
+    @Operation(summary = "Obter detalhes de um cliente pelo ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cliente encontrado"),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    })
     public ResponseEntity<Cliente> show(@PathVariable Long id) {
 
         var clientesEncontrada = clienteRepository.findById(getCliente(id).getId())
                 .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
-        ;
 
         return ResponseEntity.ok(clientesEncontrada);
 
     }
 
-    // POST
-    @ResponseBody
     @PostMapping
+    @ResponseBody
+    @Operation(summary = "Criar um novo cliente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Cliente criado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos, a validação falhou")
+    })
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente) {
 
         Optional<Cliente> clienteExistente = clienteRepository.findBycpf(cliente.getCpf());
@@ -67,8 +83,12 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
-    // PUT
     @PutMapping
+    @Operation(summary = "Atualizar um cliente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cliente atualizado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    })
     public ResponseEntity<Cliente> update(@Valid @RequestBody Cliente cliente) {
 
         clienteRepository.findById(cliente.getId())
@@ -78,13 +98,16 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
+    @Operation(summary = "Excluir um cliente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Cliente excluído com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    })
     public ResponseEntity<Cliente> delete(@PathVariable Long id) {
 
         var clientesEncontrada = clienteRepository.findById(id)
                 .orElseThrow(() -> new RestNotFoundException("Cliente não encontrado"));
-        ;
         clienteRepository.delete(clientesEncontrada);
 
         return ResponseEntity.noContent().build();

@@ -18,17 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.models.Movimentacao;
 import br.com.fiap.upperBank.repository.MovimentacaoRepository;
-import jakarta.validation.Valid;;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
+@Tag(name = "Movimentação")
 @RequestMapping("api/movimentacao")
 public class MovimentacaoController {
 
     @Autowired
     private MovimentacaoRepository movimentacaoRepository;
 
-    // GET ALL
     @GetMapping
+    @Operation(summary = "Listar todas as movimentações", description = "Retorna uma lista com todas as movimentações cadastradas.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Lista de movimentações encontrada"),
+        @ApiResponse(responseCode = "204", description = "Nenhuma movimentação encontrada")
+    })
     public ResponseEntity<List<Movimentacao>> show() {
         List<Movimentacao> movimentacoes = movimentacaoRepository.findAll();
         return movimentacoes.isEmpty()
@@ -36,8 +45,12 @@ public class MovimentacaoController {
                 : ResponseEntity.ok().body(movimentacoes);
     }
 
-    // GET DETAILS
     @GetMapping("/{id}")
+    @Operation(summary = "Buscar detalhes de uma movimentação", description = "Retorna os detalhes de uma movimentação específica.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Movimentação encontrada"),
+        @ApiResponse(responseCode = "404", description = "Movimentação não encontrada")
+    })
     public ResponseEntity<Movimentacao> show(@PathVariable Long id) {
         var movimentacoesEncontradas = movimentacaoRepository.findById(id);
         if (movimentacoesEncontradas.isEmpty()) {
@@ -47,17 +60,25 @@ public class MovimentacaoController {
         return ResponseEntity.ok().body(movimentacoesEncontradas.get());
     }
 
-    // POST
     @ResponseBody
     @PostMapping
+    @Operation(summary = "Criar uma nova movimentação", description = "Cria uma nova movimentação.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Movimentação criada com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos, a validação falhou")
+    })
     public ResponseEntity<Movimentacao> create(@Valid @RequestBody Movimentacao movimentacao) {
 
         movimentacaoRepository.save(movimentacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(movimentacao);
     }
 
-    // PUT
     @PutMapping
+    @Operation(summary = "Atualizar uma movimentação", description = "Atualiza uma movimentação existente.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Movimentação atualizada com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Movimentação não encontrada")
+    })
     public ResponseEntity<Movimentacao> update(@Valid @RequestBody Movimentacao movimentacao) {
 
         var movimentacoesEncontradas = movimentacaoRepository.findById(movimentacao.getId());
@@ -70,8 +91,12 @@ public class MovimentacaoController {
         return ResponseEntity.ok().body(movimentacao);
     }
 
-    // DELETE
     @DeleteMapping("{id}")
+    @Operation(summary = "Excluir uma movimentação", description = "Exclui uma movimentação existente.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Movimentação excluída com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Movimentação não encontrada")
+    })
     public ResponseEntity<Conta> delete(@PathVariable Long id) {
 
         var movimentacoesEncontradas = movimentacaoRepository.findById(id);
@@ -83,5 +108,4 @@ public class MovimentacaoController {
 
         return ResponseEntity.noContent().build();
     }
-
 }

@@ -20,10 +20,16 @@ import br.com.fiap.upperBank.models.Cliente;
 import br.com.fiap.upperBank.models.Conta;
 import br.com.fiap.upperBank.repository.ClienteRepository;
 import br.com.fiap.upperBank.repository.ContaRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/conta")
+@Tag(name = "Conta")
+
 public class ContaController {
 
   @Autowired
@@ -34,6 +40,11 @@ public class ContaController {
 
   // GET ALL
   @GetMapping
+  @Operation(summary = "Listar todas as contas", description = "Retorna uma lista com todas as contas cadastradas.")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Lista de contas encontrada"),
+      @ApiResponse(responseCode = "204", description = "Nenhuma conta encontrada")
+  })
   public ResponseEntity<List<Conta>> show() {
     List<Conta> contas = contaRepository.findAll();
     contas.forEach(c -> System.out.println(c));
@@ -44,6 +55,11 @@ public class ContaController {
   }
 
   // GET DETAILS
+  @Operation(summary = "Buscar detalhes de uma conta", description = "Retorna os detalhes de uma conta específica.")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Conta encontrada"),
+      @ApiResponse(responseCode = "404", description = "Conta não encontrada")
+  })
   @GetMapping("/{id}")
   public ResponseEntity<Conta> show(@PathVariable Long id) {
 
@@ -55,6 +71,11 @@ public class ContaController {
   }
 
   @PostMapping("/{id}")
+  @Operation(summary = "Criar uma nova conta para um cliente", description = "Cria uma nova conta para um cliente específico.")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Conta criada com sucesso"),
+      @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+  })
   public ResponseEntity<?> criarContaParaCliente(@Valid  @PathVariable Long id, @RequestBody Conta conta) {
 
     Optional<Cliente> optionalCliente = clienteRepository.findById(getConta(id).getId());
@@ -74,6 +95,11 @@ public class ContaController {
 
   // PUT
   @PutMapping
+  @Operation(summary = "Atualizar uma conta", description = "Atualiza uma conta existente.")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Conta atualizada com sucesso"),
+      @ApiResponse(responseCode = "404", description = "Conta não encontrada")
+  })
   public ResponseEntity<Conta> update(@Valid @RequestBody Conta conta) {
 
     var contasEncontrada = contaRepository.findById(conta.getId());
@@ -88,6 +114,11 @@ public class ContaController {
 
   // DELETE
   @DeleteMapping("/{id}")
+  @Operation(summary = "Excluir uma conta", description = "Exclui uma conta existente.")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "204", description = "Conta excluída com sucesso"),
+      @ApiResponse(responseCode = "404", description = "Conta não encontrada")
+  })
   public ResponseEntity<Conta> delete(@PathVariable Long id) {
 
     var contasEncontrada = contaRepository.findById(id);

@@ -24,12 +24,15 @@ public class TokenService {
 
     // @Value("${jwt.secret}")
     // String secret;
+    
+
+    
 
     public Token generateToken(@Valid Credencial credencial) {
         Algorithm alg = Algorithm.HMAC256("eyJzdWIiOiJqb2FvQGZpYXAuY29tLmJyIiwiaXNzIjoiTWV1SnVsaXVzIiwiZXhwIjoxNjgzNTk1NTg4fQ");
         String token = JWT.create()
                     .withSubject(credencial.email())
-                    .withIssuer("MeuJulius")
+                    .withIssuer("meuJulius")
                     .withExpiresAt(Instant.now().plus(1, ChronoUnit.HOURS))
                     .sign(alg)
                     ;
@@ -39,7 +42,7 @@ public class TokenService {
     public Usuario getValidateUser(String token) {
         Algorithm alg = Algorithm.HMAC256("eyJzdWIiOiJqb2FvQGZpYXAuY29tLmJyIiwiaXNzIjoiTWV1SnVsaXVzIiwiZXhwIjoxNjgzNTk1NTg4fQ");
         var email = JWT.require(alg)
-                    .withIssuer("MeuJulius")
+                    .withIssuer("meuJulius")
                     .build()
                     .verify(token)
                     .getSubject()
